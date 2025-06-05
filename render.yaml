@@ -1,0 +1,10 @@
+version: '3'
+services:
+  telegram-bot:
+    build: .
+    volumes:
+      - .:/app
+    command: python bot.py
+    environment:
+      - BOT_TOKEN=8025992022:AAFQ2DrBKQPUuH-daCgWBqoEdevh8-pw7j8
+    restart: unless-stopped
