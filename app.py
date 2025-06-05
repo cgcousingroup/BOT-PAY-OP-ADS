@@ -131,7 +131,7 @@ def main():
                 text = message.get("text", "")
 
                 if text == "/start":
-                    send_voice(chat_id, "AUDIO1.ogg")
+                    send_voice(chat_id, "audio1.ogg")
                     send_buttons(chat_id)
 
             elif "callback_query" in result:
