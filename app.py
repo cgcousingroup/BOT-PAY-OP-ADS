@@ -87,7 +87,7 @@ def send_confirm_button(chat_id):
     }
     data = {
         "chat_id": chat_id,
-        "text": "Gostou do que viu? Deseja receber o link de pagamento?",
+        "text": "Gostou do que viu?",
         "reply_markup": keyboard
     }
     requests.post(url, json=data)
