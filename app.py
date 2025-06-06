@@ -66,7 +66,7 @@ def send_product_buttons(chat_id):
     url = f"{BASE_URL}/sendMessage"
     keyboard = {
         "inline_keyboard": [
-            [{"text": "- Proibidão", "callback_data": "produto_a"}],
+            [{"text": "Proibidão", "callback_data": "produto_a"}],
             [{"text": "Master", "callback_data": "produto_b"}],
             [{"text": "Novinhas", "callback_data": "produto_c"}]
         ]
@@ -93,7 +93,7 @@ def send_confirm_button(chat_id):
     requests.post(url, json=data)
 
 def send_previews(chat_id, product_key):
-    msg = f"Você escolheu {product_key.replace('_', ' ').title()}. Vou te mostrar como é o VIP por dentro 😈 👇🏻"
+    msg = f"Vou te mostrar como é o VIP por dentro 😈 👇🏻"
     requests.post(f"{BASE_URL}/sendMessage", data={"chat_id": chat_id, "text": msg})
 
     for video_url in video_previews.get(product_key, []):
@@ -157,7 +157,7 @@ def main():
 
                     if produto:
                         link = payment_links.get(produto, "https://pay.sunize.com.br")
-                        msg = f"💳 Aqui está seu link de pagamento:\n{link}"
+                        msg = f"💳 Faça o pagamento aqui 👇🏻\n{link}"
                         requests.post(f"{BASE_URL}/sendMessage", data={"chat_id": chat_id, "text": msg})
                         send_voice(chat_id, "audio4.ogg")
                     else:
