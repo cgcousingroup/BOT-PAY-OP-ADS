@@ -8,9 +8,9 @@ last_update_id = None
 user_products = {}
 
 payment_links = {
-    "produto_a": "https://pagamento.com/produtoA",
-    "produto_b": "https://pagamento.com/produtoB",
-    "produto_c": "https://pagamento.com/produtoC"
+    "produto_a": "https://pay.sunize.com.br/jEOvLGkU",
+    "produto_b": "https://pay.sunize.com.br/xvCobaWe",
+    "produto_c": "https://pay.sunize.com.br/lIdtYPEi"
 }
 
 video_previews = {
@@ -41,17 +41,17 @@ def send_buttons(chat_id):
     }
     data = {
         "chat_id": chat_id,
-        "text": "😈 Deseja continuar?",
+        "text": "😈",
         "reply_markup": keyboard
     }
     requests.post(url, json=data)
 
 def send_product_table(chat_id):
     tabela = (
-        "📦 *Produtos Disponíveis:*\n\n"
-        "1️⃣ *Produto A* - R$ 49,90\n"
-        "2️⃣ *Produto B* - R$ 89,90\n"
-        "3️⃣ *Produto C* - R$ 129,90\n\n"
+        "📦 *Nossos VIPS:*\n\n"
+        "1️⃣ *Proibidão* - R$9,90\n"
+        "2️⃣ *Master (Amador, incesto, vazados)* - R$19,90\n"
+        "3️⃣ *Novinhas virgens* - R$29,90\n\n"
         "Clique abaixo para escolher:"
     )
     url = f"{BASE_URL}/sendMessage"
@@ -66,9 +66,9 @@ def send_product_buttons(chat_id):
     url = f"{BASE_URL}/sendMessage"
     keyboard = {
         "inline_keyboard": [
-            [{"text": "🛒 Produto A", "callback_data": "produto_a"}],
-            [{"text": "🛍️ Produto B", "callback_data": "produto_b"}],
-            [{"text": "🎁 Produto C", "callback_data": "produto_c"}]
+            [{"text": "- Proibidão", "callback_data": "produto_a"}],
+            [{"text": "Master", "callback_data": "produto_b"}],
+            [{"text": "Novinhas", "callback_data": "produto_c"}]
         ]
     }
     data = {
@@ -93,7 +93,7 @@ def send_confirm_button(chat_id):
     requests.post(url, json=data)
 
 def send_previews(chat_id, product_key):
-    msg = f"Você escolheu {product_key.replace('_', ' ').title()}. Vou enviar algumas prévias em vídeo para você conhecer melhor:"
+    msg = f"Você escolheu {product_key.replace('_', ' ').title()}. Vou te mostrar como é o VIP por dentro 😈 👇🏻"
     requests.post(f"{BASE_URL}/sendMessage", data={"chat_id": chat_id, "text": msg})
 
     for video_url in video_previews.get(product_key, []):
@@ -156,7 +156,7 @@ def main():
                     produto = user_products.get(chat_id)
 
                     if produto:
-                        link = payment_links.get(produto, "https://pagamento.com")
+                        link = payment_links.get(produto, "https://pay.sunize.com.br")
                         msg = f"💳 Aqui está seu link de pagamento:\n{link}"
                         requests.post(f"{BASE_URL}/sendMessage", data={"chat_id": chat_id, "text": msg})
                         send_voice(chat_id, "audio4.ogg")
